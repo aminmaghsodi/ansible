@@ -41,11 +41,13 @@ requirements:
 options:
     template_name:
         description:
-            - Name of zabbix template
-        required: true
+            - Name of zabbix template.
+            - It isn't required if and only if template_json is defined for import.
+        required: false
     template_json:
         description:
             - JSON dump of template to import
+            - It is required in import conditions when template_name is ignored. 
         required: false
     template_groups:
         description:
@@ -111,7 +113,6 @@ EXAMPLES = '''
     server_url: http://127.0.0.1
     login_user: username
     login_password: password
-    template_name: Apache2
     template_json: "{{ lookup('file', 'zabbix_apache2.json') }}"
     template_groups:
       - Webservers
